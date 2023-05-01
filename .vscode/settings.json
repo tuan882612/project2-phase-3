@@ -1,0 +1,10 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "asdhasd",
+            "database": "\\\\wsl.localhost\\Ubuntu-22.04\\home\\tuan882612\\dev_env\\python_env\\project2-phase-3\\library-ms.db"
+        }
+    ]
+}
