@@ -9,24 +9,25 @@ def load_info(books: ct.CTkScrollableFrame, title: str) -> None:
     clear(books)
     books._parent_canvas.yview_moveto(0)
 
-    header = ct.CTkLabel(
+    ct.CTkLabel(
         master=books, 
         text=f"Book Copies Loaned Out Per Branch \n '{title}'", 
-        font=("Calibri", 16), height=50)
-    header.pack(anchor=tk.N)
+        font=("Calibri", 16), height=50
+    ).pack(anchor=tk.N)
 
     data: list[tuple] = search_num_copies(title)
     if len(data) < 3: 
         ct.CTkLabel(
             master=books, 
-            text="No copies were loaned out", font=("Calibri", 16)
+            text="No copies were loaned out", 
+            font=("Calibri", 16)
         ).pack(anchor=tk.NE, padx=(0, 190))
         return
         
-    for branch_name, num_copies in data:
+    for branch, copies in data:
         ct.CTkLabel(
             master=books,
-            text=f"{branch_name} \t {num_copies} {'copy' if num_copies == 1 else 'copies'}",
+            text=f"{branch} \t {copies} {'copy' if copies == 1 else 'copies'}",
             font=("Calibri", 16)
         ).pack(anchor=tk.W, padx=20, pady=(0, 10))
 
@@ -52,7 +53,6 @@ def load_books(
             command=lambda x=book:load_info(books, x[1])
         ).pack(pady=(len(results) if i == 0 else 0, len(results)))
 
-
 def books_container(app: ct.CTk, books: ct.CTkScrollableFrame) -> None:
     search_bar = ct.CTkEntry(master=app, placeholder_text="Search")
     search_bar.place(relx=0.3, rely=0.2, relwidth=0.35, relheight=0.07)
@@ -69,10 +69,11 @@ def books_container(app: ct.CTk, books: ct.CTkScrollableFrame) -> None:
 
 def home_view(app: ct.CTk) -> None:
     clear(app)
+    top_header = "Welcome To The Library Management System"
+    sub_header = "Please Select or Search a Book for more information."
     header = ct.CTkLabel(
         master=app, 
-        text="Welcome To Library Management System, \n\
-            Please Select or Search For a Book for more information.", 
+        text=f"{top_header},\n{sub_header}", 
         font=("Calibri", 20), height=100)
     header.pack(anchor=tk.CENTER, padx=(170, 0))
     

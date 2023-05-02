@@ -3,8 +3,9 @@ import customtkinter as ct
 from views.home import home_view
 from views.borrower import borrower_view
 from views.checkout import checkout_view
-from views.entry import entry_view
+from views.new_book import entry_view
 from views.loan_late import loan_late_view
+from views.date_range import date_range_view
 
 def load_nav_bar(app: ct.CTk) -> None:
     app.side_nav = []
@@ -15,9 +16,10 @@ def load_nav_bar(app: ct.CTk) -> None:
     
     veiws = [
         (lambda:home_view(app), "Home"), 
-        (lambda:borrower_view(app), "Borrowers"), 
-        (lambda:checkout_view(app), "Checkout Books"), 
-        (lambda:entry_view(app), "Add New Entry"), 
+        (lambda:entry_view(app), "Add New Book"), 
+        (lambda:borrower_view(app), "Add New Borrower"), 
+        (lambda:checkout_view(app), "Checkout Book"),
+        (lambda:date_range_view(app), "Date Range"),
         (lambda:loan_late_view(app), "Loans and Late Returns")
     ]
     
