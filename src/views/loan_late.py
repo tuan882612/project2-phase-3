@@ -5,7 +5,6 @@ from infrastructure.utils.index import clear
 from controllers.loan_late import formated_book_infos, formated_fees
 
 def load_fee(frame: ct.CTkFrame, data: list[tuple]) -> None:
-    print(data)
     clear(frame)
     
     if not data:
@@ -24,7 +23,6 @@ def load_fee(frame: ct.CTkFrame, data: list[tuple]) -> None:
         label.pack(anchor=tk.N)
 
 def load_book(frame: ct.CTkFrame, data: list[tuple]) -> None:
-    print(data)
     clear(frame)
     
     if not data:

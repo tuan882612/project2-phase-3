@@ -144,6 +144,24 @@ def get_books_late_fees(search: str):
         """
         cursor.execute(query, (f"%{search}%", f"%{search}%"))
         return cursor.fetchall()
+    
+def get_date_range(date1: str, date2: str) -> list[tuple]:
+    with sqlite3.connect(_db_path) as conn:
+        cursor = conn.cursor()
+        cursor.execute('''
+        SELECT
+            b.book_id AS Book_ID,
+            b.title AS Book_Title,
+            bl.date_out AS Date_Out,
+            bl.due_date AS Due_Date,
+            bl.returned_date AS Returned_Date,
+            julianday(bl.returned_date) - julianday(bl.due_date) AS Days_Late
+        FROM book_loans bl
+        JOIN book b ON bl.book_id = b.book_id
+        WHERE bl.due_date BETWEEN ? AND ?
+            AND bl.returned_date > bl.due_date
+        ORDER BY Days_Late DESC;''', (date1, date2))
+        return cursor.fetchall()
 
 def get_lib_branches() -> list[tuple]:
     with sqlite3.connect(_db_path) as conn:
