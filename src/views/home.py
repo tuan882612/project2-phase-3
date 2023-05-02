@@ -60,18 +60,19 @@ def books_container(app: ct.CTk, books: ct.CTkScrollableFrame) -> None:
     search_button = ct.CTkButton(
         master=app, text="Search", 
         command=lambda:load_books(books, search_books(search_bar.get())))
-    search_button.place(relx=0.68, rely=0.2, relwidth=0.1, relheight=.07)
+    search_button.place(relx=0.665, rely=0.2, relwidth=0.12, relheight=.07)
     
     reset_button = ct.CTkButton(
         master=app, text="Reset", 
         command=lambda:home_view(app))
-    reset_button.place(relx=0.8, rely=0.2, relwidth=0.1, relheight=.07)
+    reset_button.place(relx=0.8, rely=0.2, relwidth=0.12, relheight=.07)
 
 def home_view(app: ct.CTk) -> None:
     clear(app)
     header = ct.CTkLabel(
         master=app, 
-        text="Welcome To Library Management System, \n Please Select or Search For a Book for more information.", 
+        text="Welcome To Library Management System, \n\
+            Please Select or Search For a Book for more information.", 
         font=("Calibri", 20), height=100)
     header.pack(anchor=tk.CENTER, padx=(170, 0))
     

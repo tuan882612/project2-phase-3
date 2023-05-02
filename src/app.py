@@ -22,7 +22,10 @@ def load_nav_bar(app: ct.CTk) -> None:
     ]
     
     for cmd, view in veiws:
-        button = ct.CTkButton(side_nav, text=view, command=cmd)
+        button = ct.CTkButton(
+            master=side_nav, 
+            text=view, 
+            command=cmd)
         app.side_nav.append(button)
         button.pack(padx=5, pady=5, fill="x")
 
